@@ -31,7 +31,7 @@ use yii\bootstrap5\ActiveForm;
             </div>
             <div class="form-group">
                 <div class="col-md-8">
-                  <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(), ['mask' => '(\+\9\9\8)-99-999-99-99']);?>
+                  <?= $form->field($model, 'phone')->textInput(['value' => "+998"]) ?>
                 </div>
             </div>
             <div class="form-group">
@@ -45,7 +45,7 @@ use yii\bootstrap5\ActiveForm;
             ]) ?>
 
             <div class="form-group">
-                <div class="col-lg-offset-1 col-lg-11">
+                <div class="col-lg-offset-1 col-lg-8">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
                 </div>
             </div>

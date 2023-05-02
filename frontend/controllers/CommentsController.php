@@ -16,13 +16,11 @@ class CommentsController extends Controller
     {
         $model=new Comments();
         $model->scenario = Comments::SCENARIO_CREATE;
-
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-
+            if ($model->load($this->request->post()) && $model->save()) {  
+                 
                 \Yii::$app->session->setFlash(Alert::TYPE_SUCCESS, "Successfully sent");
                 return $this->redirect("/comments/create");
-
             } else {
                 \Yii::$app->session->setFlash(Alert::TYPE_ERROR, "Something went wrong, try again later!");
             }
@@ -62,7 +60,7 @@ class CommentsController extends Controller
         $confirm=Comments::findOne($id);
         $confirm->scenario = Comments::SCENARIO_MODERATION;
 
-        $confirm->status = 1;
+        $confirm->status = Comments::STATUS_ACCEPT;
         if ($confirm->save())
         {
             return $this->redirect(['/comments/moderation']);
@@ -77,7 +75,7 @@ class CommentsController extends Controller
         $cancel=Comments::findOne($id);
         $cancel->scenario = Comments::SCENARIO_MODERATION;
 
-        $cancel->status = 2;
+        $cancel->status = Comments::STATUS_CANCEL;
         if ($cancel->save())
         {
             return $this->redirect(['/comments/moderation']);
